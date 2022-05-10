@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import api from "./services/api";
+import React, { useState, useEffect } from "react";
 import "./App.css";
-import backgroundImage from "./assets/background.jpg";
 import Header from "./components/Header";
 
 function App() {
-  const [projects, setProjects] = useState(["Web", "Mobile"]);
+  const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    api.get("projects").then((res) => {
+      setProjects(res.data);
+    });
+  }, []);
 
   const handleAddProject = () =>
     setProjects([...projects, `New ${Date.now()}`]);
@@ -13,11 +19,9 @@ function App() {
     <>
       <Header title="Home" />
 
-      <img width="400" src={backgroundImage} alt="backgroundImage" />
-
       <ul>
         {projects.map((data) => (
-          <li key={data}>{data}</li>
+          <li key={data.title}>{data.title}</li>
         ))}
       </ul>
       <button type="button" onClick={handleAddProject}>
