@@ -1,2 +1,2 @@
-*/node_modules
-backend-ts/dist
+**/node_modules
+backend-ts/**/dist
