@@ -1,2 +1,3 @@
 **/node_modules
 backend-ts/**/dist
+backend-ts/**/tmp
