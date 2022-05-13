@@ -8,7 +8,6 @@ class ImportCategoriesController {
   handle(req: Request, res: Response): Response {
     const { file } = req;
 
-    // console.log(file);
     this.importCategoriesUseCase.execute(file);
 
     return res.send();
