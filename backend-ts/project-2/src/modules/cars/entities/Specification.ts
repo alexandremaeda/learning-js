@@ -1,19 +1,22 @@
 import { v4 as uuidV4 } from 'uuid';
+import { Entity, PrimaryColumn, Column, CreateDateColumn } from 'typeorm';
 
-interface Specification {
-  id?: string;
-  name: String;
-  description: String;
-  created_at: Date;
-}
-
+@Entity('specifications')
 class Specification {
-  constructor({ name, description, created_at }: Specification) {
-    if (!this.id) this.id = uuidV4();
+  @PrimaryColumn()
+  id?: string;
 
-    this.name = name;
-    this.description = description;
-    this.created_at = created_at;
+  @Column()
+  name: String;
+
+  @Column()
+  description: String;
+
+  @CreateDateColumn()
+  created_at: Date;
+
+  constructor() {
+    if (!this.id) this.id = uuidV4();
   }
 }
 
