@@ -3,6 +3,8 @@ import swaggerUi from 'swagger-ui-express';
 
 import AppDataSource from './database';
 
+import './shared/container';
+
 import routes from './routes';
 import swaggerFile from './swagger.json';
 
