@@ -4,8 +4,6 @@ import { container } from 'tsyringe';
 import ImportCategoriesUseCase from './ImportCategoriesCaseUse';
 
 class ImportCategoriesController {
-  constructor(private importCategoriesUseCase: ImportCategoriesUseCase) {}
-
   handle(req: Request, res: Response): Response {
     const { file } = req;
 
