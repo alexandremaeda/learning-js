@@ -4,7 +4,7 @@ import {
   ICreateSpecificationDTO,
 } from '../ISpecificationsRepository';
 
-import AppDataSource from '../../../../database';
+import AppDataSource from '@database';
 
 import { Repository } from 'typeorm';
 
