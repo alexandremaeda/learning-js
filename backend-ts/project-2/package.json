@@ -5,10 +5,10 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "dev:server": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules --poll --respawn src/server.ts",
+    "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules --poll --respawn src/shared/infra/http/server.ts",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
-    "typeorm:migrate": "yarn typeorm-ts-node-commonjs migration:run -d src/database/data-source.ts",
-    "typeorm:revert": "yarn typeorm-ts-node-commonjs migration:revert -d src/database/data-source.ts",
+    "typeorm:migrate": "yarn typeorm-ts-node-commonjs migration:run -d src/shared/infra/typeorm/database/data-source.ts",
+    "typeorm:revert": "yarn typeorm-ts-node-commonjs migration:revert -d src/shared/infra/typeorm/database/data-source.ts",
     "test": "jest"
   },
   "dependencies": {

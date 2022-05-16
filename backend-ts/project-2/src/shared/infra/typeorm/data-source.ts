@@ -11,8 +11,8 @@ export const AppDataSource = new DataSource({
   password: 'ignite',
   database: 'rentalx',
   entities: [
-    './src/modules/cars/entities/*.ts',
-    './src/modules/accounts/entities/*.ts',
+    './src/modules/cars/infra/typeorm/entities/*.ts',
+    './src/modules/accounts/infra/typeorm/entities/*.ts',
   ],
   migrations: ['src/database/migrations/*.ts'],
 });

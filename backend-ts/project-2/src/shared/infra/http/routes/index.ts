@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import homeRouter from '../routes/home.routes';
+import homeRouter from './home.routes';
 import authenticateRouter from './authenticate.routes';
-import categoriesRouter from '../routes/categories.routes';
-import especificationsRouter from '../routes/especifications.routes';
+import categoriesRouter from './categories.routes';
+import especificationsRouter from './especifications.routes';
 import usersRouter from './users.routes';
 
 const routes = Router();
