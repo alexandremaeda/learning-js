@@ -1,5 +1,5 @@
 import { inject, injectable } from 'tsyringe';
-import UsersRepository from '../../repositories/implementations/UsersRepository';
+import IUsersRepository from '../../repositories/IUsersRepository';
 import { deleteFile } from '../../../../util/file';
 import AppError from '../../../../errors/AppError';
 
@@ -12,7 +12,7 @@ interface IRequest {
 export default class UpdateUserAvatarUseCase {
   constructor(
     @inject('UsersRepository')
-    private usersRepository: UsersRepository,
+    private usersRepository: IUsersRepository,
   ) {}
 
   async execute({ user_id, avatar_file }: IRequest) {
