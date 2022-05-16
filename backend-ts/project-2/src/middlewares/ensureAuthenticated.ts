@@ -8,6 +8,7 @@ interface IPayload {
   name: string;
   email: string;
 }
+
 export async function ensureAuthenticated(
   req: Request,
   res: Response,
@@ -30,6 +31,8 @@ export async function ensureAuthenticated(
     const foundUser = await usersRepository.findById(user_id);
 
     if (!foundUser) throw new AppError('User does not exist', 401);
+
+    req.user = foundUser;
 
     return next();
   } catch (err) {
