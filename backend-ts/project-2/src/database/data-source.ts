@@ -1,4 +1,4 @@
-import 'reflect-metadata';
+// import 'reflect-metadata';
 import { DataSource } from 'typeorm';
 // import { User } from "../modules/accounts/entities/User";
 // import { Category } from "../modules/cars/entities/Category";
@@ -15,6 +15,9 @@ export const AppDataSource = new DataSource({
   password: 'ignite',
   database: 'rentalx',
   // entities: [Category, Specification, User],
-  entities: ['./src/modules/cars/entities/*.ts'],
+  entities: [
+    './src/modules/cars/entities/*.ts',
+    './src/modules/accounts/entities/*.ts',
+  ],
   migrations: ['src/database/migrations/*.ts'],
 });
