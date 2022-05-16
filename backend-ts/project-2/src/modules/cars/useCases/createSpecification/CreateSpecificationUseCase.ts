@@ -2,6 +2,7 @@ import Specification from '../../entities/Specification';
 import { ISpecificationsRepository } from '../../repositories/ISpecificationsRepository';
 
 import { inject, injectable } from 'tsyringe';
+import AppError from '../../../../errors/AppError';
 
 interface IRequest {
   name: string;
@@ -18,7 +19,7 @@ class CreateEspecificationUsecase {
   async execute({ name, description }: IRequest): Promise<Specification> {
     const found = await this.especificationsRepository.findByName(name);
 
-    if (found) throw new Error('Especification already exists!');
+    if (found) throw new AppError('Especification already exists!');
 
     const created = await this.especificationsRepository.create({
       name,
