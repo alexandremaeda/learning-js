@@ -14,5 +14,5 @@ export const AppDataSource = new DataSource({
     './src/modules/cars/infra/typeorm/entities/*.ts',
     './src/modules/accounts/infra/typeorm/entities/*.ts',
   ],
-  migrations: ['src/database/migrations/*.ts'],
+  migrations: ['src/shared/infra/typeorm/migrations/*.ts'],
 });
