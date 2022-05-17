@@ -10,6 +10,7 @@ export const AppDataSource = new DataSource({
   username: 'docker',
   password: 'ignite',
   database: 'rentalx',
+  logging: true,
   entities: [
     './src/modules/cars/infra/typeorm/entities/*.ts',
     './src/modules/accounts/infra/typeorm/entities/*.ts',
