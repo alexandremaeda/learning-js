@@ -3,6 +3,9 @@ import AppError from '@shared/errors/AppError';
 import IUsersRepository from '@modules/accounts/repositories/IUsersRepository';
 import { compare } from 'bcrypt';
 import { sign } from 'jsonwebtoken';
+import IUsersTokensRepository from '@modules/accounts/repositories/IUsersTokensRepository';
+import auth from '@config/auth';
+import dayjs from 'dayjs';
 
 interface IRequest {
   email: string;
@@ -10,11 +13,12 @@ interface IRequest {
 }
 
 interface IResponse {
+  token: string;
+  refresh_token: string;
   user: {
     name: string;
     email: string;
   };
-  token: string;
 }
 
 @injectable()
@@ -22,9 +26,19 @@ class AuthenticateUserUseCase {
   constructor(
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
+    @inject('UsersTokensRepository')
+    private usersTokensRepository: IUsersTokensRepository,
   ) {}
 
   async execute({ email, password }: IRequest): Promise<IResponse> {
+    const {
+      secret_token,
+      expires_in_token,
+      secret_refresh_token,
+      expires_in_refresh_token,
+      expires_refresh_token_days,
+    } = auth;
+
     const foundUser = await this.usersRepository.findByEmail(email);
 
     if (!foundUser) throw new AppError('Email or password incorrect');
@@ -35,11 +49,27 @@ class AuthenticateUserUseCase {
 
     const token = sign(
       { name: foundUser.name, email: foundUser.email },
-      '43eef7ba0de84d4bc341421663484b8a',
-      { subject: foundUser.id, expiresIn: '1d' },
+      secret_token,
+      { subject: foundUser.id, expiresIn: expires_in_token },
     );
 
-    return { user: { name: foundUser.name, email: foundUser.email }, token };
+    const refresh_token = sign(
+      { email: foundUser.email },
+      secret_refresh_token,
+      { subject: foundUser.id, expiresIn: expires_in_refresh_token },
+    );
+
+    await this.usersTokensRepository.create({
+      user_id: foundUser.id,
+      expires_date: dayjs().add(expires_refresh_token_days, 'days').toDate(),
+      refresh_token,
+    });
+
+    return {
+      token,
+      refresh_token,
+      user: { name: foundUser.name, email: foundUser.email },
+    };
   }
 }
 

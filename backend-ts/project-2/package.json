@@ -7,14 +7,15 @@
     "build": "tsc",
     "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules --poll --respawn src/shared/infra/http/server.ts",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
-    "typeorm:migrate": "yarn typeorm-ts-node-commonjs migration:run -d src/shared/infra/typeorm/database/data-source.ts",
-    "typeorm:revert": "yarn typeorm-ts-node-commonjs migration:revert -d src/shared/infra/typeorm/database/data-source.ts",
+    "typeorm:migrate": "yarn typeorm-ts-node-commonjs migration:run -d src/shared/infra/typeorm/data-source.ts",
+    "typeorm:revert": "yarn typeorm-ts-node-commonjs migration:revert -d src/shared/infra/typeorm/data-source.ts",
     "seed:admin": "ts-node-dev src/shared/infra/typeorm/seed/admin.ts",
     "test": "jest"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
     "csv-parse": "^5.0.4",
+    "dayjs": "^1.11.2",
     "express": "^4.18.1",
     "express-async-errors": "^3.1.1",
     "jsonwebtoken": "^8.5.1",
