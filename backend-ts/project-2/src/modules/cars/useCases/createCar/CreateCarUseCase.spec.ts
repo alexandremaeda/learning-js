@@ -5,7 +5,7 @@ import CreateCarUseCase from './CreateCarUseCase';
 let createCarUseCase: CreateCarUseCase;
 let carsRepositoryInMemory: CarsRepositoryInMemory;
 
-describe('should br create a new car', () => {
+describe('should be able create a new car', () => {
   beforeEach(() => {
     carsRepositoryInMemory = new CarsRepositoryInMemory();
     createCarUseCase = new CreateCarUseCase(carsRepositoryInMemory);
