@@ -16,7 +16,7 @@ AppDataSource.initialize()
   .then(async () => {
     console.log('Data Source has been initialized!');
 
-    await AppDataSource.runMigrations();
+    // await AppDataSource.runMigrations();
 
     const app = express();
 
