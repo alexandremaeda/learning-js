@@ -24,7 +24,8 @@ export default class CreateCarUseCase {
       license_plate,
     );
 
-    if (foundCarSameLicense) throw new AppError('Category already exists!');
+    if (foundCarSameLicense)
+      throw new AppError('License Plate already exists!');
 
     const dto = {
       name,
