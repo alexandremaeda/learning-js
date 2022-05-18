@@ -1,4 +1,4 @@
-interface ICreateuserDTO {
+interface ICreateUserDTO {
   id?: string;
   name: string;
   password: string;
@@ -7,4 +7,4 @@ interface ICreateuserDTO {
   avatar?: string;
 }
 
-export default ICreateuserDTO;
+export default ICreateUserDTO;

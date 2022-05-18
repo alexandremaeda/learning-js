@@ -5,15 +5,11 @@ export default interface ICreateCarDTO {
 
   daily_rate: number;
 
-  available: boolean;
-
-  license_plate: String;
+  license_plate: string;
 
   fine_amount: number;
 
-  brand: String;
+  brand: string;
 
-  category_id?: String;
-
-  created_at: Date;
+  category_id?: string;
 }
